@@ -25,8 +25,18 @@ final class GithubSearchViewController: UIViewController, View {
     }
     
     func bind(reactor: GithubSearchViewReactor) {
-        
-        
+        // Action
+        searchBar.rx.text
+            .map{ Reactor.Action.updateQuery($0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    
+        // State
+        reactor.state.map { $0.repos }
+            .bind(to: tableView.rx.items(cellIdentifier: "cell")) { indexPath, repo, cell in
+                cell.textLabel?.text = repo
+            }
+            .disposed(by: disposeBag)
     }
 
 }

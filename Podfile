@@ -8,7 +8,7 @@ target 'ReactorKit-Tutorial' do
   # Pods for ReactorKit-Tutorial
 
   pod 'ReactorKit'
-
+  pod 'RxCocoa'
   target 'ReactorKit-TutorialTests' do
     inherit! :search_paths
     # Pods for testing
